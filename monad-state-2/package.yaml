@@ -1,0 +1,32 @@
+name:                monad-state-checked
+version:             0.1.0.0
+#synopsis:
+#description:
+homepage:            https://github.com/githubuser/monad-state-checked#readme
+license:             BSD3
+author:              Author name here
+maintainer:          example@example.com
+copyright:           2022 Author name here
+category:            Web
+extra-source-files:
+- README.md
+- CHANGELOG.md
+
+dependencies:
+  - base >= 4.7 && < 5
+
+ghc-options:
+- -Wall
+- -Wcompat
+- -Widentities
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wmissing-export-lists
+- -Wmissing-home-modules
+- -Wpartial-fields
+- -Wredundant-constraints
+
+executables:
+  monad-state-checked:
+    source-dirs:      src
+    main:             Main.hs
