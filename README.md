@@ -6,6 +6,7 @@ Collection of small independent Haskell topics, programming exercises and ideas.
 
 
 ## ByteString, Text, String, OverloadedStrings
+From [https://mmhaskell.com/blog/2022/2/17/taking-a-byte-out-of-strings](https://mmhaskell.com/blog/2022/2/17/taking-a-byte-out-of-strings)
 
 - Text types capture a unicode representation of character data
 ```
@@ -42,7 +43,7 @@ Collection of small independent Haskell topics, programming exercises and ideas.
 
 "A zipper is a technique of representing an aggregate data structure so that it is convenient for writing programs that traverse the structure arbitrarily and update its contents" (from Wikipedia)
 
-excerpt from LYAH:
+From [http://learnyouahaskell.com/zippers](http://learnyouahaskell.com/zippers):
 
 ```haskell
 data Tree a = Empty | Node a (Tree a) (Tree a) deriving (Show)
@@ -62,7 +63,7 @@ goLeft (Node x l r, bs) = (l, LeftCrumb x r:bs)
 
 
 ## Return type polymorphism
-from [https://eli.thegreenplace.net/2018/return-type-polymorphism-in-haskell/](https://eli.thegreenplace.net/2018/return-type-polymorphism-in-haskell/)
+From [https://eli.thegreenplace.net/2018/return-type-polymorphism-in-haskell/](https://eli.thegreenplace.net/2018/return-type-polymorphism-in-haskell/)
 
 - Parametric polymorphism is possible when we can define a certain operation to work similarly on any type
 ```haskell
@@ -73,4 +74,28 @@ length :: [a] -> Int
 ```haskell
 instance Ord Person where
   ...
+```
+
+- Return-type polymophism
+```haskell
+read :: Read a => String -> a
+> read "1"
+
+<interactive>:46:1:
+    No instance for (Read a0) arising from a use of `read'
+    The type variable `a0' is ambiguous
+    Possible fix: add a type signature that fixes these type variable(s)
+    <...>
+
+> read "1" :: Int
+1
+
+> read "1" :: Double
+1.0
+```
+
+type inference with return-type polymophism:
+```haskell
+> putStrLn (take (read "2") (read "\"haskell\""))
+ha
 ```
