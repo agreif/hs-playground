@@ -1,6 +1,6 @@
 # hs-playground
 
-Collection of small independent Haskell topics, programming exercises and ideas.
+My Collection of some Haskell topics, programming exercises and ideas.
 
 # Some Concepts
 
@@ -39,7 +39,7 @@ From [https://mmhaskell.com/blog/2022/2/17/taking-a-byte-out-of-strings](https:/
   >> let t4 = TL.toStrict t2
 ```
 
-## Functional Fippers
+## Functional Zippers
 
 "A zipper is a technique of representing an aggregate data structure so that it is convenient for writing programs that traverse the structure arbitrarily and update its contents" (from Wikipedia)
 
@@ -99,3 +99,46 @@ type inference with return-type polymophism:
 > putStrLn (take (read "2") (read "\"haskell\""))
 ha
 ```
+
+
+## Mutability and State
+ways to achieve mutable state in Haskell, let’s take a look at them:
+- IORef
+mutable reference to a type. An IORef must always contain a value of a given type, it is impossible to create it empty
+```haskell
+data IORef a
+
+newIORef    :: a -> IO (IORef a)
+readIORef   :: IORef a -> IO a
+writeIORef  :: IORef a -> a -> IO ()
+modifyIORef :: IORef a -> (a -> a) -> IO ()
+```
+
+- STRef in the ST monad
+ability to escape from the ST monad with the `runST :: ST s a -> a` function, making the computation pure
+```haskell
+data STRef s a
+
+newSTRef    :: a -> ST s (STRef s a)
+readSTRef   :: STRef s a -> ST s a
+writeSTRef  :: STRef s a -> a -> ST s ()
+modifySTRef :: STRef s a -> (a -> a) -> ST s ()
+```
+```haskell
+import Control.Monad.ST
+import Data.STRef
+
+magic :: Int -> Int                <- pure!
+magic x = runST $ do
+    ref <- newSTRef x
+
+    modifySTRef ref (+1)
+
+    readSTRef ref
+```
+
+- MVar
+- TVar in Software Transactional Memory (STM)
+
+
+
