@@ -2,7 +2,7 @@
 
 Collection of small independent Haskell topics, programming exercises and ideas.
 
-# Concepts
+# Some Concepts
 
 
 ## ByteString, Text, String, OverloadedStrings
@@ -58,4 +58,19 @@ goLeft :: (Tree a, Breadcrumbs a) -> (Tree a, Breadcrumbs a)
 goLeft (Node x l r, bs) = (l, LeftCrumb x r:bs)
 
 ...
+```
+
+
+## Return type polymorphism
+from [https://eli.thegreenplace.net/2018/return-type-polymorphism-in-haskell/](https://eli.thegreenplace.net/2018/return-type-polymorphism-in-haskell/)
+
+- Parametric polymorphism is possible when we can define a certain operation to work similarly on any type
+```haskell
+length :: [a] -> Int
+```
+
+- Ad-hoc polymorphism is achieved by using typeclasses
+```haskell
+instance Ord Person where
+  ...
 ```
