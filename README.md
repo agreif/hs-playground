@@ -231,3 +231,8 @@ mplus :: MonadPlus m   => m a -> m a -> m a            -- Control.Monad
 ## Language Extensions
 
 - [`DeriveAnyClass`](https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/derive_any_class.html)
+- DeriveGeneric
+- [GeneralizedNewtypeDeriving](https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/newtype_deriving.html)
+- [StandaloneDeriving](https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/standalone_deriving.html?highlight=standalonederiving#extension-StandaloneDeriving)
+- [DerivingVia](https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/deriving_via.html)
+- [DerivingStrategies](https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/deriving_strategies.html)
