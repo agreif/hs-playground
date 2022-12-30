@@ -216,14 +216,18 @@ sequence  :: (Traversable t, Monad m)       => t (m a) -> m (t a)
 liftA :: Applicative f => (a -> b) -> f a -> f b       -- Control.Applicative
 liftM :: Monad m       => (a1 -> r) -> m a1 -> m r     -- Control.Monad
 
-liftA2 :: Applicative f => (a -> b -> c) -> f a -> f b -> f c        -- Control.Applicative
-liftM2 :: Monad m       => (a1 -> a2 -> r) -> m a1 -> m a2 -> m r    -- Control.Monad
+liftA2 :: Applicative f => (a -> b -> c) -> f a -> f b -> f c      -- Control.Applicative
+liftM2 :: Monad m       => (a1 -> a2 -> r) -> m a1 -> m a2 -> m r  -- Control.Monad
 
 -- for Alternative vs MonadPlus:
 
 empty :: Alternative f => f a                          -- Control.Applicative
-mzero :: MonadPlus m   => m a                          --  Control.Monad
+mzero :: MonadPlus m   => m a                          -- Control.Monad
 
-(<|>) :: Alternative f => f a -> f a -> f a            --  Control.Applicative
+(<|>) :: Alternative f => f a -> f a -> f a            -- Control.Applicative
 mplus :: MonadPlus m   => m a -> m a -> m a            -- Control.Monad
 ```
+
+## Language Extensions
+
+- [`DeriveAnyClass`](https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/derive_any_class.html)
