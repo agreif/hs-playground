@@ -198,14 +198,14 @@ from [https://wiki.haskell.org/Applicative_functor#Some_advantages_of_applicativ
 - Applicative functors do not need special transformers because they can be combined in a generic way
 
 ```haskell
-(<*>) :: Applicative f => f (a -> b) -> f a -> f b   Prelude
-ap    :: Monad m       => m (a -> b) -> m a -> m b   Control.Monad
+(<*>) :: Applicative f => f (a -> b) -> f a -> f b     -- Prelude
+ap    :: Monad m       => m (a -> b) -> m a -> m b     -- Control.Monad
 
-pure   :: Applicative f => a -> f a                  Prelude
-return :: Monad m       => a -> m a                  Prelude
+pure   :: Applicative f => a -> f a                    -- Prelude
+return :: Monad m       => a -> m a                    -- Prelude
 
-(*>) :: Applicative f        => f a -> f b -> f b    Prelude
-(>>) :: forall a b . Monad m => m a -> m b -> m b    Prelude
+(*>) :: Applicative f        => f a -> f b -> f b      -- Prelude
+(>>) :: forall a b . Monad m => m a -> m b -> m b      -- Prelude
 
 traverse :: (Traversable t, Applicative f) => (a -> f b) -> t a -> f (t b)
 mapM     :: (Traversable t, Monad m)       => (a -> m b) -> t a -> m (t b)
@@ -213,17 +213,17 @@ mapM     :: (Traversable t, Monad m)       => (a -> m b) -> t a -> m (t b)
 sequenceA :: (Traversable t, Applicative f) => t (f a) -> f (t a)
 sequence  :: (Traversable t, Monad m)       => t (m a) -> m (t a)
 
-liftA :: Applicative f => (a -> b) -> f a -> f b     Control.Applicative
-liftM :: Monad m       => (a1 -> r) -> m a1 -> m r   Control.Monad
+liftA :: Applicative f => (a -> b) -> f a -> f b       -- Control.Applicative
+liftM :: Monad m       => (a1 -> r) -> m a1 -> m r     -- Control.Monad
 
-liftA2 :: Applicative f => (a -> b -> c) -> f a -> f b -> f c      Control.Applicative
-liftM2 :: Monad m       => (a1 -> a2 -> r) -> m a1 -> m a2 -> m r  Control.Monad
+liftA2 :: Applicative f => (a -> b -> c) -> f a -> f b -> f c        -- Control.Applicative
+liftM2 :: Monad m       => (a1 -> a2 -> r) -> m a1 -> m a2 -> m r    -- Control.Monad
 
 -- for Alternative vs MonadPlus:
 
-empty :: Alternative f => f a            Control.Applicative
-mzero :: MonadPlus m   => m a            Control.Monad
+empty :: Alternative f => f a                          -- Control.Applicative
+mzero :: MonadPlus m   => m a                          --  Control.Monad
 
-(<|>) :: Alternative f => f a -> f a -> f a     Control.Applicative
-mplus :: MonadPlus m   => m a -> m a -> m a     Control.Monad
+(<|>) :: Alternative f => f a -> f a -> f a            --  Control.Applicative
+mplus :: MonadPlus m   => m a -> m a -> m a            -- Control.Monad
 ```
