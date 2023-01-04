@@ -228,6 +228,7 @@ mzero :: MonadPlus m   => m a                          -- Control.Monad
 mplus :: MonadPlus m   => m a -> m a -> m a            -- Control.Monad
 ```
 
+
 ## Language Extensions
 
 - [`DeriveAnyClass`](https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/derive_any_class.html)
@@ -236,3 +237,31 @@ mplus :: MonadPlus m   => m a -> m a -> m a            -- Control.Monad
 - [StandaloneDeriving](https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/standalone_deriving.html?highlight=standalonederiving#extension-StandaloneDeriving)
 - [DerivingVia](https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/deriving_via.html)
 - [DerivingStrategies](https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/deriving_strategies.html)
+
+
+## NonEmpty
+
+These packages implement non-empty lists:
+
+- [NonEmpty](http://hackage.haskell.org/package/NonEmpty)
+- [NonEmptyList](http://hackage.haskell.org/package/NonEmptyList)
+- [Cardinality](http://hackage.haskell.org/package/Cardinality)
+- [non-empty](http://hackage.haskell.org/package/non-empty)
+- [semigroups](http://hackage.haskell.org/package/semigroups)
+- [mono-traversable](http://hackage.haskell.org/package/mono-traversable)
+
+
+## Encoding invariants at the type level
+
+[Encoding invariants using types](https://www.dcc.fc.up.pt/~pbv/aulas/tapf/handouts/gadts.html)
+[Type Invariants for Haskell](https://www.iro.umontreal.ca/~monnier/lemmas.pdf)
+[Eliminating Bugs with Dependent Haskell](https://dl.acm.org/doi/pdf/10.1145/3406088.3409020)
+
+## Custom Preludes
+
+[protolude](https://www.stephendiehl.com/posts/protolude.html)
+[universum](https://hackage.haskell.org/package/universum)
+
+- Avoid all partial functions
+- Use more efficient string representations
+- ...
