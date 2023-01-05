@@ -261,7 +261,37 @@ These packages implement non-empty lists:
 
 [protolude](https://www.stephendiehl.com/posts/protolude.html)
 [universum](https://hackage.haskell.org/package/universum)
+[relude](https://hackage.haskell.org/package/relude)
 
 - Avoid all partial functions
 - Use more efficient string representations
 - ...
+
+
+## OverloadedLists
+
+[OverloadedLists](https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/overloaded_lists.html)
+This extension allows programmers to use the list notation for construction of structures like: Set, Map, IntMap, Vector, Text and Array
+
+IsList class
+
+
+## Data.Word and Data.Int
+
+[Unsigned integer types - Data.Word](https://hackage.haskell.org/package/base-4.17.0.0/docs/Data-Word.html)
+[Signed integer types - Data.Int](https://hackage.haskell.org/package/base-4.17.0.0/docs/Data-Int.html)
+
+
+## Why to not use lists
+
+[When You Should Use Lists in Haskell](https://www.imn.htwk-leipzig.de/~waldmann/etc/untutorial/list-or-not-list/)
+[Lists are not ...](https://wiki.haskell.org/Haskell_programming_tips#Lists_are_not_good_for_everything)
+
+
+## Foldable and Traversable
+
+[Data.Foldable](https://hackage.haskell.org/package/base-4.17.0.0/docs/Data-Foldable.html)
+The Foldable class generalises some common Data.List functions to structures that can be reduced to a summary value one element at a time.
+
+[Data.Traversable](https://hackage.haskell.org/package/base-4.17.0.0/docs/Data-Traversable.html)
+Every Traversable structure is both a Functor and Foldable because it is possible to implement the requisite instances in terms of traverse by using fmapDefault for fmap and foldMapDefault for foldMap.
