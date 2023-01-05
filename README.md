@@ -294,4 +294,167 @@ IsList class
 The Foldable class generalises some common Data.List functions to structures that can be reduced to a summary value one element at a time.
 
 [Data.Traversable](https://hackage.haskell.org/package/base-4.17.0.0/docs/Data-Traversable.html)
+
+traverse turns things inside a Traversable into a Traversable of things "inside" an Applicative
+
 Every Traversable structure is both a Functor and Foldable because it is possible to implement the requisite instances in terms of traverse by using fmapDefault for fmap and foldMapDefault for foldMap.
+
+
+## Semigroup and Foldable
+
+[Data.Semigroup](https://hackage.haskell.org/package/base-4.17.0.0/docs/Data-Semigroup.html)
+
+A type a is a Semigroup if it provides an associative function (<>) that lets you combine any two values of type a into one.
+
+`Min`
+`Max`
+`First`
+`Last`
+`Dual` The dual of a Monoid, obtained by swapping the arguments of mappend.
+`All` Boolean monoid under conjunction (&&).
+`Any` Boolean monoid under disjunction (||).
+`Sum` Monoid under addition.
+`Product` Monoid under multiplication.
+
+
+[Data.Monoid](https://hackage.haskell.org/package/base-4.17.0.0/docs/Data-Monoid.html)
+
+A type a is a Monoid if it provides an associative function (<>) that lets you combine any two values of type a into one, and a neutral element (mempty) such that
+
+`a <> mempty == mempty <> a == a`
+
+A Monoid is a Semigroup with the added requirement of a neutral element. Thus any Monoid is a Semigroup,
+
+`Dual` The dual of a Monoid, obtained by swapping the arguments of mappend
+`All` Boolean monoid under conjunction (&&).
+`Any` Boolean monoid under disjunction (||).
+`Sum` Monoid under addition.
+`Product` Monoid under multiplication.
+`First` Maybe monoid returning the leftmost non-Nothing value.
+`Last` Maybe monoid returning the rightmost non-Nothing value.
+`Alt` Monoid under <|>.
+`Ap` This data type witnesses the lifting of a Monoid into an Applicative pointwise.
+
+
+## LambdaCase
+
+[LambdaCase](https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/lambda_case.html)
+
+```haskell
+\case
+  p1 -> e1
+  pN -> eN
+
+which is equivalent to
+
+\freshName -> case freshName of
+                p1 -> e1
+		pN -> eN
+```
+
+
+## MultiWayIf
+
+[MultiWayIf](https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/multiway_if.html)
+
+```haskell
+if | guard1 -> expr1
+   | ...
+   | guardN -> exprN
+
+which is roughly equivalent to
+
+case () of
+  _ | guard1 -> expr1
+  ...
+  _ | guardN -> exprN
+
+```
+
+
+## TupleSections
+
+[TupleSections](https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/tuple_sections.html)
+
+```haskell
+(, True)
+
+is alternative for
+
+\x -> (x, True)
+
+(, "I", , , "Love", , 1337)
+
+which translates to
+
+\a b c d -> (a, "I", b, c, "Love", d, 1337)
+
+
+## BlockArguments
+
+[BlockArguments](https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/block_arguments.html)
+
+Allow do expressions, lambda expressions, etc. to be directly used as a function argument.
+
+```haskell
+when (x > 0) do
+  print x
+  exitFailure
+
+will be parsed as:
+
+when (x > 0) (do
+  print x
+  exitFailure)
+```
+
+
+## NumericUnderscores
+
+```haskell
+-- decimal
+million    = 1_000_000
+
+-- float
+pi       = 3.141_592_653_589_793
+
+-- function
+isUnderMillion = (< 1_000_000)
+```
+
+
+## ScopedTypeVariables
+
+[ScopedTypeVariables](https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/scoped_type_variables.html)
+
+GHC supports lexically scoped type variables, without which some type signatures are simply impossible to write. For example:
+
+```haskell
+f :: forall a. [a] -> [a]
+f xs = ys ++ ys
+     where
+       ys :: [a]
+       ys = reverse xs
+```
+
+### Declaration type signatures
+
+[Declaration type signatures](https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/scoped_type_variables.html#decl-type-sigs)
+
+A declaration type signature that has explicit quantification (using forall) brings into scope the explicitly-quantified type variables, in the definition of the named function. For example:
+
+```haskell
+f :: forall a. [a] -> [a]
+f (x:xs) = xs ++ [ x :: a ]
+```
+
+The “forall a” brings “a” into scope in the definition of “f”.
+
+
+## TypeApplications
+
+[TypeApplications](https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/type_applications.html)
+
+Allow the use of type application syntax.
+
+The TypeApplications extension allows you to use visible type application in expressions. Here is an example: `show (read @Int "5")`. The `@Int` is the visible type application; it specifies the value of the type variable in read’s type.
